@@ -12,33 +12,35 @@ namespace WorldlangDict;
 <main class="tags">
 
 <? $exists = isset($defs[$tag]); ?>
-<h1><?= $config->getTrans('single tag view') ?>: <?= $tag; ?></h1>
-  <? if ($exists) : ?>
+<? if ($exists) : ?>
+  <h1><?= $config->getTrans('single tag view') ?>: <?= $defs[$tag]['term']; ?></h1>
   <p>
     <em>(<?= $defs[$tag]['class'];?>)</em>&nbsp;
     <?= $defs[$tag]['translation'] ?>
   </p>
+  <? else : ?>
+    <h1><?= $config->getTrans('single tag view') ?>: <?= $tag; ?></h1>
   <? endif; ?>
   <hr/>
   <? if (!empty($tags[$tag])): ?>
 
     <dl>
     <?php
-    foreach($tags[$tag] as $word):
-        if (!isset($defs[$word])) continue;
-        $def = $defs[$word];
+    foreach($tags[$tag] as $slug):
+        if (!isset($defs[$slug])) continue;
+        $def = $defs[$slug];
         
       ?>
       <div>
         <dt><?= WorldlangDictUtils::makeLink(
                 $config,
-                'lexi/'.urlencode($word),
+                'lexi/'.urlencode($slug),
                 $request,
-                $word
+                $defs[$slug]['term']
             ); ?></dt>
         <dd>
         <em>(<?=$defs[$word]['class'];?>)</em>&nbsp;
-        <?=$defs[$word]['translation'];?>
+        <?=$defs[$slug]['translation'];?>
         </dd>
       </div>
     <? endforeach; ?>
