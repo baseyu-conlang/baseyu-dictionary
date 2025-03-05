@@ -23,7 +23,7 @@ $page->description = $entry['term'] . ': ' . htmlspecialchars($trans);
     <header>
         <h1><?=$entry['term']?></h1>
 <? if (!empty($entry['word class'])): ?>
-        <div class="wordClass">(<?=$entry['word class']?>)</div>
+        <div class="wordClass">(<a href="<?=$config->grammar_url;?>"><?=$entry['word class']?></a>)</div>
 <? endif; ?>
         &nbsp; <a href="<?=$entry['ipa link']?>"><span class="fa fa-volume-up"></span></a>
     </header>
@@ -57,7 +57,7 @@ if (!empty($entry['synonyms'])):
                         $config,
                         'lexi/'.$cur,
                         $request
-                    );?>" class="hl encap" lang="<?=GLB_CODE;?>"><?=$cur;?></a> <?
+                    );?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$cur;?></a> <?
         endforeach; ?>
     </section>
 <? endif; ?>
@@ -79,7 +79,7 @@ if (!empty($entry['antonyms'])):
                         $config,
                         'lexi/'.$cur,
                         $request
-                    );?>" class="hl encap" lang="<?=GLB_CODE;?>"><?=$cur;?></a> <?
+                    );?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$cur;?></a> <?
         endforeach; ?>
     </section>
 <? endif; ?>
@@ -145,7 +145,7 @@ if (array_key_exists('derived terms', $entry)): ?>
             <h2><?=sprintf($config->getTrans('derived word list'), '');?></h2>
             <?
             foreach($entry['derived terms'] as $slug=>$data) :
-                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" class="hl encap" lang="<?=GLB_CODE;?>"><?=$data['term'];?></a> <?
+                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$data['term'];?></a> <?
             endforeach;
 
             ?> <span class="hl green">[+]</span>
@@ -163,7 +163,7 @@ if (array_key_exists('derived terms', $entry)): ?>
                 );?></dt>
                 <dd>
                 <? if (isset($data['class'])) : ?>
-                    <em>(<?=$data['class'];?>)</em>&nbsp;
+                    <em>(<a href="<?=$config->grammar_url;?>"><?=$data['class'];?></a>)</em>&nbsp;
                 <? endif; ?>
                     <?=$data['trans'][$request->lang];?>
                 </dd>
@@ -185,7 +185,7 @@ if (array_key_exists('derived terms', $entry)): ?>
 if (array_key_exists('rhyme', $entry)): 
     if (isset($entry['rhyme exclusions'])) {
         foreach($entry['rhyme exclusions'] as $key=>$ex) {
-            $entry['rhyme exclusions'][$key] = '<a href='.WorldlangDictUtils::makeUri($config, 'lexi/'.$ex, $request).' class="hl encap" lang="'.GLB_CODE.'">'.$ex.'</a>';
+            $entry['rhyme exclusions'][$key] = '<a href='.WorldlangDictUtils::makeUri($config, 'lexi/'.$ex, $request).' class="hl encap" lang="'.WL_CODE_FULL.'">'.$ex.'</a>';
         }
         $exclusions = implode('/', $entry['rhyme exclusions']);
     } else {
@@ -199,7 +199,7 @@ if (array_key_exists('rhyme', $entry)):
             <h2><?=sprintf($config->getTrans('entry rhymes header'), $exclusions);?></h2>:
             <?
             foreach(array_keys($entry['rhyme']) as $slug) :
-                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" class="hl encap" lang="<?=GLB_CODE;?>"><?=$entry['rhyme'][$slug]['term'];?></a> <?
+                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$entry['rhyme'][$slug]['term'];?></a> <?
             endforeach;
 
             ?> <span class="hl green">[+]</span>
@@ -217,7 +217,7 @@ if (array_key_exists('rhyme', $entry)):
                     );?></dt>
                 <dd>
                 <? if (isset($data['word class'])) : ?>
-                    <em>(<?=$data['word class'];?>)</em>&nbsp;
+                    <em>(<a href="<?=$config->grammar_url;?>"><?=$data['word class'];?></a>)</em>&nbsp;
                 <? endif; ?>
                     <?=$data[$request->lang];?> 
                 </dd>

@@ -41,7 +41,7 @@ endforeach;
                 );?></dt>
         <dd>
         <? if (isset($data['word class'])) : ?>
-            <em>(<?=$data['word class'];?>)</em>&nbsp;
+            <em>(<a href="<?=$config->grammar_url;?>"><?=$data['word class'];?></a>)</em>&nbsp;
         <? endif; ?>
             <?=$data['trans'][$request->lang];?>
         </dd>
@@ -73,7 +73,7 @@ if (isset($entry['etymology']['am oko'])): ?>
     <h3><?= $config->getTrans('entry etymology am oko header'); ?></h3>
     <ul>
     <? foreach($entry['etymology']['am oko'] as $item): ?>
-        <li><a href="../lexi/<?=$item;?>" class="hl encap" lang="<?=GLB_CODE;?>"><?=$item;?></a></li>
+        <li><a href="../lexi/<?=$item;?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$item;?></a></li>
     <? endforeach; ?>
     </ul>.
 </div>
@@ -98,7 +98,7 @@ if (isset($entry['etymology']['am kompara'])): ?>
     <h3><?= $config->getTrans('entry etymology am kompara header'); ?></h3>:
     <ul>
     <? foreach($entry['etymology']['am kompara'] as $item): ?>
-        <li><a href="../lexi/<?=$item;?>" class="hl encap" lang="<?=GLB_CODE;?>"><?=$item;?></a></li>
+        <li><a href="../lexi/<?=$item;?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$item;?></a></li>
     <? endforeach; ?>
     </ul>
 </div>

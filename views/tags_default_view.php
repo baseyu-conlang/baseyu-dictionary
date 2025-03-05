@@ -21,7 +21,7 @@ foreach ($tags as $tag=>$words):
     <dt><?= WorldlangDictUtils::makeLink($config, "lexilari/".$tag, $request, $tag); ?></dt>
     <dd>
         <? if ($exists) : ?>
-          <em>(<a href="https://xwexi.globasa.net/<?=$request->lang;?>/gramati/lexiklase"><?=$defs[$tag]['class'];?></a>)</em>&nbsp;
+          <em>(<a href="<?=$config->grammar_url;?>"><?=$defs[$tag]['class'];?></a>)</em>&nbsp;
           <?=$defs[$tag]['translation'];?>
         <? endif; ?>
         <span class="hl green"><?=count($words) ?></span>

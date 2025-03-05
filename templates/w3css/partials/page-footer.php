@@ -34,18 +34,28 @@ namespace WorldlangDict;
 <? endif; ?>
     </ul></section>
     
+    <!-- Additional links -->
     <section><ul>
-<?php /* TODO removed Globasa links */ ?>
+        <li><a href="https://globasa.net/<?=$request->lang;?>/">🔗 Globasa</a></li>
+        <li><a href="https://xwexi.globasa.net/<?=$request->lang;?>/">🔰 Xwexi</a></li>
+        <li><a href="https://doxo.globasa.net/<?=$request->lang;?>/">📖 Doxo</a></li>
+        <li><a href="https://menalari.globasa.net/<?=$request->lang;?>/">📔 Menalari</a></li>
     </ul></section>
 
+    <!-- Software links -->
     <section><ul>
-    <?php /* TODO removed Globasa link */ ?>
+        <li><a href="<?php echo WorldlangDictUtils::makeUri(
+                    $config,
+                    'am-reporte/?url='.$config->siteUri.substr($request->url, 1),
+                    $request
+                ); ?>"><span class="fa fa-bug"></span> <?php echo $config->getTrans('report link');?></a></li>
+        <li><a href="https://github.com/PartialShawn/worldlang-dictionary"><span class="fa fa-github"></span> <?php echo $config->getTrans('github link');?></a></li>
+        <li><a href="https://github.com/Globasa-Team/globasa-docs"><span class="fa fa-code"></span> <?php echo $config->getTrans('api link');?></a></li>
     </ul></section>
 
     <section class="copyright">  
         <a xmlns:dct="http://purl.org/dc/terms/" rel="license" class="cc_license badge"
             href="http://creativecommons.org/publicdomain/zero/1.0/">
-<?php /* TODO copy to NOC storage thing */ ?>
             <img src="https://cdn.globasa.net/graphics/site_graphics/cc_blue_x2.png" alt="CC0" class="cc_license"/>
             <img src="https://cdn.globasa.net/graphics/site_graphics/cc_zero_blue_x2.png" alt="CC0" class="cc_license"/>
         </a>

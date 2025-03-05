@@ -68,13 +68,13 @@ if (isset($entry['entry notes'])) :
                     } else {
                         $nfirst = false;
                     }
-                    ?>  <a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" lang="<?= GLB_CODE; ?>"><?= $slug; ?></a><?
+                    ?>  <a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" lang="<?= WL_CODE_FULL; ?>"><?= $slug; ?></a><?
                 endforeach;
                 ?>.</p><?
                 break;
             case 'gramati':
                 $page = explode("#", $data)[0];
-                ?>  <p><?= $config->getTrans('entry note gramati'); ?> <?= $config->getTrans('entry note gramati '.$page); ?>.</p>   <?
+                ?>  <p><?= $config->getTrans('entry note gramati'); ?> <a href="<?=$config->grammar_note_url;?><?= $data; ?>"><?= $config->getTrans('entry note gramati '.$page); ?></a>.</p>   <?
                 break;
             case 'Nota':
                 ?>  <p><?= $entry['entry notes'][$type]; ?></p>  <?

@@ -15,7 +15,7 @@ namespace WorldlangDict;
 <? if ($exists) : ?>
   <h1><?= $config->getTrans('single tag view') ?>: <?= $defs[$tag]['term']; ?></h1>
   <p>
-    <em>(<?= $defs[$tag]['class'];?>)</em>&nbsp;
+    <em>(<a href="<?=$config->grammar_url;?>"><?= $defs[$tag]['class'];?></a>)</em>&nbsp;
     <?= $defs[$tag]['translation'] ?>
   </p>
   <? else : ?>
@@ -39,7 +39,7 @@ namespace WorldlangDict;
                 $defs[$slug]['term']
             ); ?></dt>
         <dd>
-        <em>(<?=$defs[$word]['class'];?>)</em>&nbsp;
+        <em>(<a href="<?=$config->grammar_url;?>"><?=$defs[$slug]['class'];?></a>)</em>&nbsp;
         <?=$defs[$slug]['translation'];?>
         </dd>
       </div>

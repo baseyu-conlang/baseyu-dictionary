@@ -111,7 +111,7 @@
         </dt>
         <dd <?=$attributes;?>>
 <? if (isset($data['class']) && !empty($data['class'])) : ?>
-            <span class="wordClass">(<?=$data['class'];?>)</span>
+            <span class="wordClass">(<a href="<?=$config->grammar_url;?>"><?=$data['class'];?></a>)</span>
 <? endif; ?>
             <?=$data['translation']?>
         </dd>

@@ -53,7 +53,7 @@ namespace WorldlangDict;
                         $word
                     );?></dt>
                 <dd>
-                    <em>(<?=$dict[$word]['class'];?>)</em>&nbsp;
+                    <em>(<a href="<?=$config->grammar_url;?>"><?=$dict[$word]['class'];?></a>)</em>&nbsp;
                     <?=$dict[$word]['translation'];?>                    
                 </dd>
             </div>

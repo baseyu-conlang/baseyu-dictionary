@@ -32,7 +32,7 @@
         ?></dt>
         <dd>
             <? if (isset($entry['word class']) && !empty($entry['word class'])) :
-                ?> <span class="wordClass">(<?=$entry['word class'];?>)</span>&nbsp; <?
+                ?> <span class="wordClass">(<a href="<?=$config->grammar_url;?>"><?=$entry['word class'];?></a>)</span>&nbsp; <?
             endif; ?>
             <?=$entry['trans html'][$request->lang];?>
         </dd>

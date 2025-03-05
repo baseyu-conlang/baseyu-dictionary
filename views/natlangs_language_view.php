@@ -21,7 +21,7 @@ namespace WorldlangDict;
 <? foreach($data as $term) { ?>
 
     <div>
-        <dt lang="<?= GLB_CODE; ?>"><?=
+        <dt lang="<?= WL_CODE_FULL; ?>"><?=
             WorldlangDictUtils::makeLink(
                 $config,
                 'lexi/'.urlencode($term),
@@ -33,7 +33,7 @@ namespace WorldlangDict;
 <? endif; ?>
         </dt>
         <dd>
-            <span class="wordClass">(<?=$dict[$term]['class'];?>)</span>
+            <span class="wordClass">(<a href="<?=$config->grammar_url;?>"><?=$dict[$term]['class'];?></a>)</span>
             <?=$dict[$term]['translation']?>
         </dd>
     </div>

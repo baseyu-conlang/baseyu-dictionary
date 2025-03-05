@@ -3,12 +3,12 @@ namespace WorldlangDict;
 
 define('WL_CODE_SHORT', 'wld');
 define('WL_CODE_FULL', 'art-x-worldlang');
-define('LANG_HTML_ATTR', 'lang="art-x-worldlang"');
 define('OFFICIAL_SOURCE_NATLANGS', array('English', 'Elvish', 'Klingon'));
 
 /* App config */
 $config->siteUri = 'http://test.globasa.net/';
 $config->siteName = 'Worldlang Dictionary';
+$config->custom_id = 'default'; // the ID for customizations of CSS and views (recommend slugified worldlang name)
 $config->setWorldlang('wld');
 $config->setLang('eng', 'eng');
 $config->worldlang_name = 'Worldlang';
@@ -16,6 +16,8 @@ $config->site_logo_url = 'https://cdn.globasa.net/graphics/flower/globasa-flower
 $config->setWorldlang('wld');
 $config->setUserLangs(['eng'=>'English','spa'=>'español','epo'=>'Esperanto']);
 $config->setTemplate('w3css', 'templates');
+$config->grammar_url_template = "https://example.com/%s/url";
+$config->grammar_notes_url_template = "https://example.com/%s/url"; /* App adds `/`, page slug, `#`, anchor name */
 
 /* API Config */
 $config->api2Path =       '/home/user/path/data/';
