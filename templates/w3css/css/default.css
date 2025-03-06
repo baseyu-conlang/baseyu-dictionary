@@ -20,10 +20,10 @@
 /*#region   Colors (Light mode & dark mode)     */
 /********  ------------------------------------ */
 @media (prefers-color-scheme: light) {:root {
-    --h1_fg:        oklch(30% 0.07 var(--hue1));
-    --h1_bg:        oklch(95% 0.07 var(--hue1));
-    --h1_fg_strong: oklch(30% 0.07 var(--hue1));
-    --h1_bg_strong: oklch(80% 0.07 var(--hue1));
+    --h1_fg:        oklch(30% 0.10 var(--hue1));
+    --h1_bg:        oklch(95% 0.05 var(--hue1));
+    --h1_fg_strong: oklch(30% 0.05 var(--hue1));
+    --h1_bg_strong: oklch(80% 0.10 var(--hue1));
 
     --h2_fg:        oklch(30% 0.10 var(--hue2));
     --h2_bg:        oklch(90% 0.05 var(--hue2));
