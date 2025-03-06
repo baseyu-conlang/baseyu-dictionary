@@ -24,7 +24,7 @@ foreach ($tags as $tag=>$words):
           <em>(<a href="<?=$config->grammar_url;?>"><?=$defs[$tag]['class'];?></a>)</em>&nbsp;
           <?=$defs[$tag]['translation'];?>
         <? endif; ?>
-        <span class="hl green"><?=count($words) ?></span>
+        <span class="hl h1"><?=count($words) ?></span>
     </dd>
   </div>
 <?php endforeach; ?>

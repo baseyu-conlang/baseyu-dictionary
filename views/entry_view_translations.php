@@ -37,10 +37,10 @@ if (!empty($entry['trans'][$request->lang])):
             // TODO: link this!
             if (!str_contains($translation, '<a')) :
                 echo($trans_note_preceeding.' ');
-                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'cel-ruke/'.$slug, $request) ?>" class="hl green"><?=$translation?></a><?
+                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'cel-ruke/'.$slug, $request) ?>" class="hl h1"><?=$translation?></a><?
                 echo(' '.$trans_note_following);
             else:
-                ?><span class="hl green"><?=$translation?></span><?
+                ?><span class="hl h1"><?=$translation?></span><?
             endif;
         endforeach;
     endforeach;

@@ -148,7 +148,7 @@ if (array_key_exists('derived terms', $entry)): ?>
                 ?><a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$data['term'];?></a> <?
             endforeach;
 
-            ?> <span class="hl green">[+]</span>
+            ?> <span class="hl h1">[+]</span>
         </summary>
         <h2><?=sprintf($config->getTrans('derived word list'), '');?></h2>
         <dl>
@@ -202,7 +202,7 @@ if (array_key_exists('rhyme', $entry)):
                 ?><a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$entry['rhyme'][$slug]['term'];?></a> <?
             endforeach;
 
-            ?> <span class="hl green">[+]</span>
+            ?> <span class="hl ">[+]</span>
         </summary>
         <h2><?=sprintf($config->getTrans('entry rhymes header'), $exclusions);?></h2>:
         <dl>
