@@ -10,7 +10,7 @@ namespace WorldlangDict;
 <? require_once($config->templatePath . "partials/page-header.php"); ?>
 
 <main>
-  <img src="<?=$config->site_logo_url;?>" height="128" width="128" />
+  <img src="<?=$config->site_logo_url;?>" />
 </main>
 
 <? require_once($config->templatePath . "partials/page-footer.php"); ?>

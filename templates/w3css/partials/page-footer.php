@@ -17,9 +17,9 @@ namespace WorldlangDict;
 
     <section class="about">
         <!-- TODO: add alt text to i18n -->
-            <img src="<?= $config->site_logo_url; ?>" height="64" width="64" alt="<?= $config->getTrans('site_name_short'); ?> Logo" />
-            <p><?= $config->getTrans('site_name_full'); ?><br/>
-            <em><?= $config->getTrans('site_slogan'); ?></em></p>
+        <img src="<?= $config->site_logo_url; ?>" height="64" width="64" alt="<?= $config->getTrans('site_name_short'); ?> Logo" />
+        <p><?= $config->getTrans('site_name_full'); ?><br/>
+        <em><?= $config->getTrans('site_slogan'); ?></em></p>
     </section>
 
     <section><ul>
@@ -35,32 +35,29 @@ namespace WorldlangDict;
     </ul></section>
     
     <!-- Additional links -->
-    <section><ul>
-        <li><a href="https://globasa.net/<?=$request->lang;?>/">🔗 Globasa</a></li>
-        <li><a href="https://xwexi.globasa.net/<?=$request->lang;?>/">🔰 Xwexi</a></li>
-        <li><a href="https://doxo.globasa.net/<?=$request->lang;?>/">📖 Doxo</a></li>
-        <li><a href="https://menalari.globasa.net/<?=$request->lang;?>/">📔 Menalari</a></li>
-    </ul></section>
 
     <!-- Software links -->
     <section><ul>
-        <li><a href="<?php echo WorldlangDictUtils::makeUri(
-                    $config,
-                    'am-reporte/?url='.$config->siteUri.substr($request->url, 1),
-                    $request
-                ); ?>"><span class="fa fa-bug"></span> <?php echo $config->getTrans('report link');?></a></li>
         <li><a href="https://github.com/PartialShawn/worldlang-dictionary"><span class="fa fa-github"></span> <?php echo $config->getTrans('github link');?></a></li>
-        <li><a href="https://github.com/Globasa-Team/globasa-docs"><span class="fa fa-code"></span> <?php echo $config->getTrans('api link');?></a></li>
     </ul></section>
 
     <section class="copyright">  
         <a xmlns:dct="http://purl.org/dc/terms/" rel="license" class="cc_license badge"
             href="http://creativecommons.org/publicdomain/zero/1.0/">
-            <img src="https://cdn.globasa.net/graphics/site_graphics/cc_blue_x2.png" alt="CC0" class="cc_license"/>
-            <img src="https://cdn.globasa.net/graphics/site_graphics/cc_zero_blue_x2.png" alt="CC0" class="cc_license"/>
+            <img src="<?php echo $config->siteUri; ?>assets/cc.logo.circle.svg" alt="CC0" class="cc_license"/>
+            <img src="<?php echo $config->siteUri; ?>assets/cc-zero.svg" alt="CC0" class="cc_license"/>
         </a>
         <p xmlns:dct="http://purl.org/dc/terms/" class="cc_license">
-            To the extent possible under law, <a rel="dct:publisher" href="https://globasa.net/"><span property="dct:title"><?= $config->getTrans('site_owner'); ?></span></a> has waived all copyright and related or neighboring rights to this site content. Built on a <a href="https://partialsolution.ca" rel="nofollow">Partial Solution</a>.
+            <!-- Content Copyright -->
+            To the extent possible under law, <a rel="dct:publisher" href=""><span property="dct:title"><?= $config->getTrans('site_owner'); ?></span></a> has waived all copyright and related or neighboring rights to this site content.
+            <!-- Logo -->
+            Logo "<a href="https://game-icons.net/1x1/viscious-speed/abstract-031.html">Abstract 031 icon</a>" (<a href="https://www.svgrepo.com/svg/323709/abstract-031">via</a>)
+            <a href="http://creativecommons.org/publicdomain/zero/1.0/" class="cc">
+                <img src="<?php echo $config->siteUri; ?>assets/cc.logo.circle.svg" alt="CC" class="cc_license"/>
+                <img src="<?php echo $config->siteUri; ?>assets/cc-zero.svg" alt="0" class="cc_license"/>
+            </a> by <a href="https://viscious-speed.deviantart.com/">Viscious Speed</a>.
+            <!-- Technology -->
+            Built on a <a href="https://partialsolution.ca" rel="nofollow">Partial Solution</a>.
         </p>
     </section>
 
