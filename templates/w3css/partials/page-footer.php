@@ -51,11 +51,8 @@ namespace WorldlangDict;
             <!-- Content Copyright -->
             To the extent possible under law, <a rel="dct:publisher" href=""><span property="dct:title"><?= $config->getTrans('site_owner'); ?></span></a> has waived all copyright and related or neighboring rights to this site content.
             <!-- Logo -->
-            Logo "<a href="https://game-icons.net/1x1/viscious-speed/abstract-031.html">Abstract 031 icon</a>" (<a href="https://www.svgrepo.com/svg/323709/abstract-031">via</a>)
-            <a href="http://creativecommons.org/publicdomain/zero/1.0/" class="cc">
-                <img src="<?php echo $config->siteUri; ?>assets/cc.logo.circle.svg" alt="CC" class="cc_license"/>
-                <img src="<?php echo $config->siteUri; ?>assets/cc-zero.svg" alt="0" class="cc_license"/>
-            </a> by <a href="https://viscious-speed.deviantart.com/">Viscious Speed</a>.
+            Logo "Speaking Head" by <a href="https://github.com/twitter/twemoji" rel="nofollow">Twemoji</a> (<a href="https://www.svgrepo.com/svg/407507/speaking-head" rel="nofollow">via</a>)
+            is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
             <!-- Technology -->
             Built on a <a href="https://partialsolution.ca" rel="nofollow">Partial Solution</a>.
         </p>

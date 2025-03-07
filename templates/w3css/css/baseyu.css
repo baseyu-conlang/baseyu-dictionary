@@ -1,0 +1,9 @@
+/*
+    Selected Baseyu color: #3662c7
+    https://imagecolorpicker.com/color-code/3662c7 #3662c7 ≈ Cerulean Blue
+    oklch: 263.88
+*/
+:root {
+    --hue1: 263.88; /* Baseyu blue (primary) */ /* --hue1: 295; */
+    --hue2: calc(var(--hue1) + 180);
+}
