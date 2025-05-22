@@ -2,6 +2,7 @@
 
 namespace WorldlangDict;
 
+if (!(empty($entry['etymology']))):
 ?>
 <section class="etymology">
 <h2><?= sprintf($config->getTrans('Etymology'), "")?></h2>
@@ -112,3 +113,5 @@ if (isset($entry['etymology']['link'])): ?>
 <? endif; ?>
 
 </section>
+
+<? endif; /* !empty($entry['etymology']) */ ?>

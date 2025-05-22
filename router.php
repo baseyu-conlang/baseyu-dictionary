@@ -4,18 +4,16 @@ namespace WorldlangDict;
 /**
  * Calls the appropriate function based on the url.
  */
-function router($config)
+function router(WorldlangDictConfig $config)
 {
     $page = new Page($config->getTrans('App Name'));
 
     $request = new Request($config);
 
     if ($request->incomplete) {
-        WorldlangDictUtils::redirect($config, "");
+        WorldlangDictUtils::redirect($config=$config, $request=$request);
     }
     $config->setLang($request->lang);
-
-    // log_weird_error($request);
 
     try {
         switch ($request->controller) {
@@ -86,25 +84,5 @@ function router($config)
             Error_controller::debug($config, $request, $page, $t);
         }
         Error_controller::wtf($config, $request, $page);
-    }
-}
-
-
-/**
- * Logs details about what's happening if the request is a string rather than an array.
- * Not sure why this happens periodically.
- */
-function log_weird_error($request):void {
-    if (is_string($request)) {
-        @error_log("\n-----".date(DATE_ATOM)."\n", 3, "debug.log");
-        @error_log("\nrouter has a request as string.\n", 3, "debug.log");
-        @error_log("\nrequest:\n".serialize($request)."\n", 3, "debug.log");
-        @error_log("\nbacktrace:\n".serialize(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS))."\n", 3, "debug.log");
-
-        foreach(debug_backtrace() as $trace) {
-                
-            @error_log("\nfile :".$trace['file']."\n", 3, "debug.log");
-            @error_log("\nfile :".$trace['class'].$trace['type'].$trace['function'].$trace['line']."\n", 3, "debug.log");
-        }
     }
 }

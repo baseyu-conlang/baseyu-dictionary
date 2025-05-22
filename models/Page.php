@@ -8,14 +8,14 @@ class Page
     public $siteName;
     public $description;
 
-    public function __construct($siteName)
+    public function __construct(string $siteName)
     {
         $this->title = $this->siteName = $siteName;
         $this->content = '';
         $this->description = '';
     }
 
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title . ' &mdash; ' . $this->siteName;
     }

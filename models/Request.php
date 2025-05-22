@@ -15,7 +15,7 @@ class Request
     public $linkQuery;
     public $url;
 
-    public function __construct($config)
+    public function __construct(WorldlangDictConfig $config)
     {
         $this->url = $_SERVER['REQUEST_URI'];
         $parsedUrl = parse_url(strtolower($_SERVER['REQUEST_URI']));
