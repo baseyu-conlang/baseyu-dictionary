@@ -16,7 +16,7 @@
   action="https://formspree.io/maylyonr"
   method="POST"
 >
-  <input type="hidden" name="URL" value="<?=$request->options['url'];?>" >
+  <input type="hidden" name="URL" value="<?=isset($request->options['url'])?$request->options['url']:'(blank)';?>" >
   <label>
     <p><?=$config->getTrans('email?');?></p>
     <input type="text" name="_replyto">

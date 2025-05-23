@@ -3,7 +3,7 @@
   * Examples
   */
 
-if (file_exists($config->examples_location.$entry['slug'].'.yaml')) : 
+if (!empty($config->examples_location) and file_exists($config->examples_location.$entry['slug'].'.yaml')) : 
     $examples = yaml_parse_file($config->examples_location.$entry['slug'].'.yaml');
 ?>
 </pre>
