@@ -33,10 +33,9 @@ namespace WorldlangDict;
       ?>
       <div>
         <dt><?= WorldlangDictUtils::makeLink(
-                $config,
-                'lexi/'.urlencode($slug),
-                $request,
-                $defs[$slug]['term']
+                config:$config, request:$request,
+                controller:'word', arg:urlencode($slug),
+                text:$defs[$slug]['term']
             ); ?></dt>
         <dd>
         <em>(<a href="<?=$config->grammar_url;?>"><?=$defs[$slug]['class'];?></a>)</em>&nbsp;

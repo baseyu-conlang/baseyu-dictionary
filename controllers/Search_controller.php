@@ -22,10 +22,10 @@ class Search_controller
                 $lang = array_key_last($request->options);
             }
             if (empty($request->options[$lang])) {
-                WorldlangDictUtils::redirect($config, $request);
+                WorldlangDictUtils::redirect(config:$config, request:$request);
             }
             $term = trim($request->options[$lang]);
-            $results = self::natlang_term_search($config, $lang, $term, $page);
+            $results = self::natlang_term_search(config:$config, lang:$lang, term:$term, request:$request);
         }
         $page->setTitle($config->getTrans('search result title').': '.$term);
         require_once('views/search_results_view.php');
@@ -64,7 +64,7 @@ class Search_controller
         $terms = yaml_parse_file($config->search_terms_location.WL_CODE_SHORT.'.yaml');
         
         if (array_key_exists($query, $terms) && count($terms[$query])==1) {
-            WorldlangDictUtils::redirect($config, $request, 'lexi/'.urlencode($terms[$query][0]));
+            WorldlangDictUtils::redirect(config:$config, request:$request, controller:'word', arg:urlencode($terms[$query][0]));
         } else {
             if (array_key_exists($query, $terms)) {
                 return $terms[$query];
@@ -98,8 +98,7 @@ class Search_controller
                 }
                 else {
                     foreach($data as $hit) {
-                        $partialMatches[$key] = $hit;
-                        // TODO: Is this overwritting some results?
+                        $partialMatches[] = $hit;
                     }
                 }
             }
@@ -113,7 +112,7 @@ class Search_controller
     /**
      * Search natlang for term.
      */
-    private static function natlang_term_search(object $config, string $lang, string $term, object $request):array {
+    private static function natlang_term_search(object $config, string $lang, string $term, Request $request):array {
         // check if file exists
         if (!file_exists($config->search_terms_location.$lang.".yaml")) {
             throw new Error_404_Exception("Search Language Not Found");
@@ -122,9 +121,9 @@ class Search_controller
 
         if (isset($terms[$term])) {
             if (count($terms[$term]) == 1) {
-                WorldlangDictUtils::redirect($config, $request, 'lexi/'.urlencode($terms[$term][0]));
+                WorldlangDictUtils::redirect(config:$config, request:$request, controller:'word', arg:urlencode($terms[$term][0]));
             } else {
-                WorldlangDictUtils::redirect($config, $request, 'cel-ruke/'.urlencode($term));
+                WorldlangDictUtils::redirect(config:$config, request:$request, controller:'natlang-search', arg:urlencode($term));
             }
         }
         return self::natlang_levenshtein_search(term:$term, lang:$lang, terms:$terms);

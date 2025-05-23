@@ -16,7 +16,7 @@ namespace WorldlangDict;
     <p><?=$config->getTrans('translation aide description');?></p>
 
 <? $words = isset($_REQUEST['text']) ? $_REQUEST['text'] : null; ?>
-    <form action="<?=WorldlangDictUtils::makeUri($config, "tul/basatayti", $request);?>" method="post">
+    <form action="<?=WorldlangDictUtils::makeUri(config:$config, controller:'tool', arg:'basatayti', request:$request);?>" method="post">
         <textarea name="text"><?=$words;?></textarea>
         <input type="submit" value="<?=$config->getTrans('translation aide translate button')?>" />
     </form>
@@ -47,11 +47,10 @@ namespace WorldlangDict;
             if (isset($dict[$word])) : ?>
             <div>
                 <dt><?=WorldlangDictUtils::makeLink(
-                        $config,
-                        'lexi/'.urlencode($word),
-                        $request,
-                        $word
-                    );?></dt>
+                    config:$config, request:$request,
+                    controller:'word', arg:urlencode($word),
+                    text:$word
+                );?></dt>
                 <dd>
                     <em>(<a href="<?=$config->grammar_url;?>"><?=$dict[$word]['class'];?></a>)</em>&nbsp;
                     <?=$dict[$word]['translation'];?>                    

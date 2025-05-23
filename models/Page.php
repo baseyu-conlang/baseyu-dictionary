@@ -7,6 +7,7 @@ class Page
     public $content;
     public $siteName;
     public $description;
+    public $show_input=false;
 
     public function __construct(string $siteName)
     {

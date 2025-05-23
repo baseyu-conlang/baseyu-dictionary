@@ -12,7 +12,7 @@ if (isset($request->options['candidate'])) {
 }
 
 if ($page->show_input): ?>
-    <form class="tool" action="<?=WorldlangDictUtils::makeUri($config, 'tul/minimum-duaxey', $request);?>" method="get">
+    <form class="tool" action="<?=WorldlangDictUtils::makeUri(config:$config, controller:'tool', arg:'minimum-duaxey', request:$request);?>" method="get">
         <input type="text" name="candidate" placeholder="<?=$config->getTrans('minimum pair new placeholder');?>" value="<?=$candidate;?>" />
         <input type="submit" value="<?=$config->getTrans('minimum pair new button');?>" />
     </form>

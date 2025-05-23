@@ -19,7 +19,7 @@ namespace WorldlangDict;
 
 <section>
     <header>
-        <h2><a href="<?=WorldlangDictUtils::makeUri($config, 'reports/parse', $request);?>"><?=$config->getTrans('report parse title');?></a></h2>
+        <h2><a href="<?=WorldlangDictUtils::makeUri(config:$config, controller:'report', arg:'parse', request:$request);?>"><?=$config->getTrans('report parse title');?></a></h2>
     </header>
     <p><?=$config->getTrans('report parse description');?></p>
 </section>

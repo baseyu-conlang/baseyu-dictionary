@@ -54,10 +54,9 @@ if (!empty($entry['synonyms'])):
         <?
         foreach ($entry['synonyms'] as $cur) :
             ?><a href="<?=WorldlangDictUtils::makeUri(
-                        $config,
-                        'lexi/'.$cur,
-                        $request
-                    );?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$cur;?></a> <?
+                controller:'word', arg:$cur,
+                config:$config, request: $request
+            );?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$cur;?></a> <?
         endforeach; ?>
     </section>
 <? endif; ?>
@@ -76,10 +75,9 @@ if (!empty($entry['antonyms'])):
         <?
         foreach ($entry['antonyms'] as $cur) :
             ?><a href="<?=WorldlangDictUtils::makeUri(
-                        $config,
-                        'lexi/'.$cur,
-                        $request
-                    );?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$cur;?></a> <?
+                controller:'word', arg:$cur,
+                config:$config, request: $request
+            );?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$cur;?></a> <?
         endforeach; ?>
     </section>
 <? endif; ?>
@@ -93,10 +91,9 @@ if (!empty($entry['antonyms'])):
 if (!empty($entry['tags'])):
     foreach ($entry['tags'] as $i=>$tag) {
         $entry['tags'][$i] = WorldlangDictUtils::makeLink(
-            $config,
-            "lexilari/".$tag,
-            $request,
-            $tag
+            config:$config, request:$request,
+            controller:'tag', arg:$tag,
+            text:$tag
         );
     } ?>
 <section>
@@ -145,7 +142,7 @@ if (array_key_exists('derived terms', $entry)): ?>
             <h2><?=sprintf($config->getTrans('derived word list'), '');?></h2>
             <?
             foreach($entry['derived terms'] as $slug=>$data) :
-                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$data['term'];?></a> <?
+                ?><a href="<?= WorldlangDictUtils::makeUri(config:$config, controller:'word', arg:$slug, request:$request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$data['term'];?></a> <?
             endforeach;
 
             ?> <span class="hl h1">[+]</span>
@@ -156,10 +153,9 @@ if (array_key_exists('derived terms', $entry)): ?>
         foreach($entry['derived terms'] as $a_term=>$data) : ?>
             <div>
                 <dt><?=WorldlangDictUtils::makeLink(
-                    $config,
-                    'lexi/'.urlencode($a_term),
-                    $request,
-                    $data['term']
+                    controller:'word', arg:urlencode($a_term),
+                    config:$config, request:$request,
+                    text: $data['term']
                 );?></dt>
                 <dd>
                 <? if (isset($data['class'])) : ?>
@@ -185,7 +181,7 @@ if (array_key_exists('derived terms', $entry)): ?>
 if (array_key_exists('rhyme', $entry)): 
     if (isset($entry['rhyme exclusions'])) {
         foreach($entry['rhyme exclusions'] as $key=>$ex) {
-            $entry['rhyme exclusions'][$key] = '<a href='.WorldlangDictUtils::makeUri($config, 'lexi/'.$ex, $request).' class="hl encap" lang="'.WL_CODE_FULL.'">'.$ex.'</a>';
+            $entry['rhyme exclusions'][$key] = '<a href='.WorldlangDictUtils::makeUri(config:$config, controller:'word', arg:$ex, request:$request).' class="hl encap" lang="'.WL_CODE_FULL.'">'.$ex.'</a>';
         }
         $exclusions = implode('/', $entry['rhyme exclusions']);
     } else {
@@ -199,7 +195,7 @@ if (array_key_exists('rhyme', $entry)):
             <h2><?=sprintf($config->getTrans('entry rhymes header'), $exclusions);?></h2>:
             <?
             foreach(array_keys($entry['rhyme']) as $slug) :
-                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$entry['rhyme'][$slug]['term'];?></a> <?
+                ?><a href="<?= WorldlangDictUtils::makeUri(config:$config, controller:'word', arg:$slug, request:$request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$entry['rhyme'][$slug]['term'];?></a> <?
             endforeach;
 
             ?> <span class="hl ">[+]</span>
@@ -210,10 +206,9 @@ if (array_key_exists('rhyme', $entry)):
         foreach($entry['rhyme'] as $a_term=>$data) : ?>
             <div>
                 <dt><?=WorldlangDictUtils::makeLink(
-                        $config,
-                        'lexi/'.urlencode($a_term),
-                        $request,
-                        $data['term']
+                        config:$config, request:$request,
+                        controller:'word', arg:urlencode($a_term),
+                        text:$data['term']
                     );?></dt>
                 <dd>
                 <? if (isset($data['word class'])) : ?>
@@ -237,8 +232,8 @@ if (array_key_exists('rhyme', $entry)):
  * Entry footer
  */ ?>
 <footer>
-    <?=WorldlangDictUtils::makeLink($config, 'lexi/'.$entry['term'], $request,
-        '<span class="fa fa-link"></span> '.$config->getTrans('Word Link')) ?>
+    <?=WorldlangDictUtils::makeLink(config:$config, controller:'word', arg:$entry['term'], request:$request,
+        text:'<span class="fa fa-link"></span> '.$config->getTrans('Word Link')) ?>
 </footer>
 
 </main>

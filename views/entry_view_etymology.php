@@ -34,11 +34,9 @@ endforeach;
 <? foreach($entry['etymology']['derived trans'] as $data) :
     if (isset($data['trans'])) : ?>
         <div>
-        <dt><?=WorldlangDictUtils::makeLink(
-                    $config,
-                    'lexi/'.$data['text'],
-                    $request,
-                    $data['text']
+        <dt><?=WorldlangDictUtils::makeLink(text:$data['text'],
+                    config:$config, request:$request,
+                    controller:'word', arg:$data['text'],
                 );?></dt>
         <dd>
         <? if (isset($data['word class'])) : ?>

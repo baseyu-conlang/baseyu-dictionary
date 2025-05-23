@@ -23,7 +23,7 @@ namespace WorldlangDict;
     continue;  
   }
   ?>
-  <li><strong><?= WorldlangDictUtils::makeLink($config, "estatisti-fe-lexiasel/".$natlang, $request, $natlang); ?></a></strong>: <?= $percent; ?>%</li>
+  <li><strong><?= WorldlangDictUtils::makeLink(config:$config, controller:'natlang', arg:$natlang, request:$request, text:$natlang); ?></a></strong>: <?= $percent; ?>%</li>
 <? } ?>
 </ul>
 

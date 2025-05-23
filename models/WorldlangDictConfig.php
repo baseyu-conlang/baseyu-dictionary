@@ -32,6 +32,7 @@ class WorldlangDictConfig
     public string $maintenance_message;
     public string $min_location ;
     public Page $page;
+    public array $routes;
     public string $search_terms_location ;
     public string $site_logo_url;
     public string $siteName;

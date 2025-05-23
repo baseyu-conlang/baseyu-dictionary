@@ -22,11 +22,9 @@ namespace WorldlangDict;
 
     <div>
         <dt lang="<?= WL_CODE_FULL; ?>"><?=
-            WorldlangDictUtils::makeLink(
-                $config,
-                'lexi/'.urlencode($term),
-                $request,
-                $term
+            WorldlangDictUtils::makeLink(text:$term,
+                config:$config, request:$request,
+                controller:'word', arg:urlencode($term)
             );?>
 <? if (isset($dict[$term]['class']) && !empty($dict[$term]['class'])) : ?>
             

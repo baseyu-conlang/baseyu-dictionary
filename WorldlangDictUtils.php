@@ -3,9 +3,10 @@ namespace WorldlangDict;
 
 class WorldlangDictUtils
 {
-    public static function makeUri(WorldlangDictConfig $config, string $controller, Request $request): string
+    public static function makeUri(WorldlangDictConfig $config, Request $request, string $controller, ?string $arg=null): string
     {
-        return $config->siteUri.$config->lang.'/'.$controller.(!is_string($request) ? $request->linkQuery : "");
+        if (isset($config->routes[$controller])) $controller = $config->routes[$controller];
+        return $config->siteUri.$config->lang.'/'.$controller.(!empty($arg) ? '/'.$arg : '').$request->linkQuery;
     }
 
     public static function changeLangUri(WorldlangDictConfig $config, Request $request, string $lang): string
@@ -23,19 +24,17 @@ class WorldlangDictUtils
             .$request->linkQuery;
     }
 
-    public static function redirect(WorldlangDictConfig $config, Request $request, string $controller=""): void
+    public static function redirect(WorldlangDictConfig $config, Request $request, string $controller="", ?string $arg=null): void
     {
-        header('Location: '.WorldlangDictUtils::makeUri($config, $controller, $request));
+        header('Location: '.WorldlangDictUtils::makeUri(config:$config, controller:$controller, arg:$arg, request:$request));
         exit(0);
     }
 
-    public static function makeLink(WorldlangDictConfig $config, string $controller, Request $request, string|null $text=null): string
+    public static function makeLink(WorldlangDictConfig $config, Request $request, string $controller, ?string $arg=null, ?string $text=null): string
     {
-        if ($text == null) {
-            $text = $controller;
-        }
+        if ($text == null) $text = $controller;
         return '<a href="'.
-            WorldlangDictUtils::makeUri($config, $controller, $request).
+            WorldlangDictUtils::makeUri(config:$config, controller:$controller, arg:$arg, request:$request).
             '">'.$text.'</a>';
     }
 }

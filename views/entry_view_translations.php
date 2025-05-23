@@ -37,7 +37,7 @@ if (!empty($entry['trans'][$request->lang])):
             // TODO: link this!
             if (!str_contains($translation, '<a')) :
                 echo($trans_note_preceeding.' ');
-                ?><a href="<?= WorldlangDictUtils::makeUri($config, 'cel-ruke/'.$slug, $request) ?>" class="hl h1"><?=$translation?></a><?
+                ?><a href="<?= WorldlangDictUtils::makeUri(config:$config, controller:'natlang-search', arg:$slug, request:$request) ?>" class="hl h1"><?=$translation?></a><?
                 echo(' '.$trans_note_following);
             else:
                 ?><span class="hl h1"><?=$translation?></span><?
@@ -68,7 +68,7 @@ if (isset($entry['entry notes'])) :
                     } else {
                         $nfirst = false;
                     }
-                    ?>  <a href="<?= WorldlangDictUtils::makeUri($config, 'lexi/'.$slug, $request); ?>" lang="<?= WL_CODE_FULL; ?>"><?= $slug; ?></a><?
+                    ?>  <a href="<?= WorldlangDictUtils::makeUri(config:$config, controller:'word', arg:$slug, request: $request); ?>" lang="<?= WL_CODE_FULL; ?>"><?= $slug; ?></a><?
                 endforeach;
                 ?>.</p><?
                 break;

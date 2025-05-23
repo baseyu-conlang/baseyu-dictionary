@@ -38,7 +38,7 @@ class Word_controller
         }
 
         if (is_null($term)) {
-            WorldlangDictUtils::redirect($config, $request, "");
+            WorldlangDictUtils::redirect(config:$config, request:$request);
         }
         if (!isset($search_terms[$term])) {
             throw new Error_404_Exception("Word not found");
@@ -80,8 +80,6 @@ class Word_controller
     {
         $index = yaml_parse_file($config->min_location.$config->lang.".yaml");
         $wordIndex = array_rand($index);
-        WorldlangDictUtils::redirect($config, $request, "lexi/".$wordIndex);
-        // WordController::addEntry($config, $request, $wordIndex, $page);
-        // $page->setTitle("Random word");
+        WorldlangDictUtils::redirect(config:$config, request:$request, controller:'word', arg:$wordIndex);
     }
 }

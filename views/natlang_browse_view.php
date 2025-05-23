@@ -26,7 +26,7 @@ $first = true;
     if (!$first) {
         echo ", ";
     }
-    echo WorldlangDictUtils::makeLink($config, "lexi/".$trans, $request, $trans);
+    echo WorldlangDictUtils::makeLink(config:$config, controller:'word', arg:$trans, request:$request, text:$trans);
     $first = false;
     endforeach; ?></dd></div>
 <? endforeach; ?>

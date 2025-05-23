@@ -23,11 +23,9 @@
         if (empty($entry['term'])) return ""; ?>
         <div>
         <dt><?
-            echo(WorldlangDictUtils::makeLink(
-                $config,
-                'lexi/'.urlencode($entry['slug']),
-                $request,
-                $entry['term']
+            echo(WorldlangDictUtils::makeLink(text:$entry['term'],
+                config:$config, request:$request,
+                controller:'word', arg:urlencode($entry['slug']),
             ));
         ?></dt>
         <dd>

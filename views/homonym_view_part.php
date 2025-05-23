@@ -6,7 +6,7 @@ namespace WorldlangDict;
     <p><?=$config->getTrans('homonym terminator description');?></p>
 
 <? if ($page->show_input): ?>
-    <form class="tool" action="<?=WorldlangDictUtils::makeUri($config, "tul/samaeskri-lexi", $request);?>" method="get">
+    <form class="tool" action="<?=WorldlangDictUtils::makeUri(config:$config, controller:'tool', arg:'samaeskri-lexi', request:$request);?>" method="get">
         <input type="text" name="candidate" placeholder="<?=$config->getTrans('homonym terminator new placeholder');?>" />
         <input type="submit" value="<?=$config->getTrans('homonym terminator new button');?>" />
     </form>

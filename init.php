@@ -5,7 +5,6 @@ namespace WorldlangDict;
 require_once 'router.php';
 require_once 'resources/downloadFile.php';
 require_once 'resources/loadCsv.php';
-require_once 'resources/Parsedown.php';
 require_once 'resources/custom_exceptions.php';
 require_once 'WorldlangDictUtils.php';
 require_once 'models/WorldlangDictConfig.php';

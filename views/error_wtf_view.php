@@ -13,7 +13,8 @@ http_response_code(500);
 
 <main>
     <h1>Server Error</h1>
-    <p>Processing your request resulted in uncought errors. Even now they are running around causing havoc. I'm not sure what to do about it.</p>
+    <p>Processing your request resulted in uncaught errors. Even now they are running around causing havoc. I'm not sure what to do about it.</p>
+    <p>However, I did write about it in the system error log.</p>
 </main>
 
 

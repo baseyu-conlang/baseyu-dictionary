@@ -17,54 +17,44 @@ function router(WorldlangDictConfig $config)
 
     try {
         switch ($request->controller) {
-            case 'tools':
-            case 'tul': // Globasa
+            case 'tool': case $config->routes['tool']:
                 Tool_controller::run($config, $request, $page);
                 break;
-            case 'words':
-            case 'lexi': // Globasa
+            case 'word': case $config->routes['word']:
                 Word_controller::output_entry($config, $request, $page);
                 break;
-            case 'natlang-search':
-            case 'cel-ruke': // Globasa
+            case 'natlang-search': case $config->routes['natlang-search']:
                 Word_controller::addNatWord($config, $request, $config->lang, $page);
                 break;
-            case 'search':
-            case 'xerca': // Globasa
+            case 'search': case $config->routes['search']:
                 Search_controller::search($config, $request, $page);
                 break;
-            case 'feedback':
-            case 'am-reporte': // Globasa
+            case 'feedback': case $config->routes['feedback']:
                 Feedback_controller::feedback($config, $request, $page);
                 break;
-            case 'tags':
-            case 'lexilari': // Globasa
+            case 'tag': case $config->routes['tag']:
                 Tags_controller::addTags($config, $request, $page);
                 break;
-            case 'browse':
-            case 'abeceli-menalari': // Globasa
+            case 'browse': case $config->routes['browse']:
                 Browse_controller::default($config, $request, $page);
                 break;
-            case 'natlangs':
-            case 'estatisti-fe-lexiasel': // Globasa
+            case 'natlang': case $config->routes['natlang']:
                 require_once('controllers/Natlangs_controller.php');
                 Natlangs_controller::run($config, $request, $page);
                 break;
-            case 'natlang-browse':
-            case 'natlang-abeceli': // Globasa
+            case 'natlang-browse': case $config->routes['natlang-browse']:
                 require_once('controllers/Natlang_browse_controller.php');
                 Natlang_browse_controller::default($config, $request, $page);
                 break;
-            case 'stats':
-            case 'estatisti': // Globasa
+            case 'stats': case $config->routes['stats']:
                 require_once('controllers/Statistics_controller.php');
                 Statistics_controller::default($config, $request, $page);
                 break;
-            case 'reports':
+            case 'report': case $config->routes['report']:
                 require_once('controllers/Reports_controller.php');
                 Reports_controller::run($config, $request, $page);
                 break;
-            case 'test':
+            case 'test': case $config->routes['test']:
                 Test_controller::helloWorld($config, $request, $page);
                 break;
             case '':
@@ -80,9 +70,6 @@ function router(WorldlangDictConfig $config)
     } catch (Error_invalid_request_exception $e) {
         Error_controller::invalid_request($config, $request, $page);
     } catch(\Throwable $t) {
-        if ($config->debugging) {
-            Error_controller::debug($config, $request, $page, $t);
-        }
-        Error_controller::wtf($config, $request, $page);
+        Error_controller::wtf(config:$config, request:$request, page:$page, error:$t);
     }
 }

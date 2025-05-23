@@ -102,11 +102,9 @@
 ?>
     <div>
         <dt <?=$attributes;?>><?=
-            WorldlangDictUtils::makeLink(
-                $config,
-                'lexi/'.urlencode($term),
-                $request,
-                $data['term']
+            WorldlangDictUtils::makeLink(text:$data['term'],
+                config:$config, request:$request,
+                controller:'word', arg:urlencode($term),
             );?>
         </dt>
         <dd <?=$attributes;?>>

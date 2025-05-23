@@ -18,7 +18,7 @@ foreach ($tags as $tag=>$words):
     $exists = isset($defs[$tag]);
 ?>
   <div>
-    <dt><?= WorldlangDictUtils::makeLink($config, "lexilari/".$tag, $request, $tag); ?></dt>
+    <dt><?= WorldlangDictUtils::makeLink(config:$config, controller:'tag', arg:$tag, request:$request, text:$tag); ?></dt>
     <dd>
         <? if ($exists) : ?>
           <em>(<a href="<?=$config->grammar_url;?>"><?=$defs[$tag]['class'];?></a>)</em>&nbsp;

@@ -23,14 +23,14 @@ namespace WorldlangDict;
     </section>
 
     <section><ul>
-        <li><a href="<?php echo WorldlangDictUtils::makeUri($config, 'abeceli-menalari', $request); ?>"><?= $config->getTrans('browse title') ?></a></li>
+        <li><a href="<?php echo WorldlangDictUtils::makeUri(config:$config, controller:'browse', request:$request); ?>"><?= $config->getTrans('browse title') ?></a></li>
         <li><a href="https://xwexi.globasa.net/<?=$request->lang;?>/gramati/lexiklase"><?php echo $config->getTrans('word classes link');?></a></li>
-        <li><a href="<?php echo WorldlangDictUtils::makeUri($config, 'lexilari', $request); ?>"><?php echo $config->getTrans('all words button');?></a></li>
-        <li><a href="<?php echo WorldlangDictUtils::makeUri($config, 'tul/basatayti', $request); ?>"><?php echo $config->getTrans('translation aide title');?></a></li>
-        <li><a href="<?php echo WorldlangDictUtils::makeUri($config, 'estatisti-fe-lexiasel', $request); ?>"><?php echo $config->getTrans('natlangs title');?></a></li>
-        <li><a href="<?php echo WorldlangDictUtils::makeUri($config, 'lexi', $request); ?>"><?php echo $config->getTrans('random word button');?></a></li>
+        <li><a href="<?php echo WorldlangDictUtils::makeUri(config:$config, controller:'tag', request:$request); ?>"><?php echo $config->getTrans('all words button');?></a></li>
+        <li><a href="<?php echo WorldlangDictUtils::makeUri(config:$config, controller:'tool', arg:'basatayti', request:$request); ?>"><?php echo $config->getTrans('translation aide title');?></a></li>
+        <li><a href="<?php echo WorldlangDictUtils::makeUri(config:$config, controller:'natlang', request:$request); ?>"><?php echo $config->getTrans('natlangs title');?></a></li>
+        <li><a href="<?php echo WorldlangDictUtils::makeUri(config:$config, controller:'word', request:$request); ?>"><?php echo $config->getTrans('random word button');?></a></li>
 <? if ($request->lang === 'eng') : ?>
-        <li><a href="<?php echo WorldlangDictUtils::makeUri($config, 'tul', $request); ?>"><?php echo $config->getTrans('tools button');?></a></li>
+        <li><a href="<?php echo WorldlangDictUtils::makeUri(config:$config, controller:'tool', request:$request); ?>"><?php echo $config->getTrans('tools button');?></a></li>
 <? endif; ?>
     </ul></section>
     
