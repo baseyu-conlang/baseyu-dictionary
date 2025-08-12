@@ -65,7 +65,7 @@ class Search_controller
         $term = "";
         if (!empty($request->options[WL_CODE_SHORT])) {
             $lang = WL_CODE_SHORT;
-            $term = trim($request->options[WL_CODE_SHORT]);
+            $term = mb_trim($request->options[WL_CODE_SHORT], encoding:"UTF-8");
             $results = self::worldlang_term_search(config:$config, query:$term, page:$page, request:$request);
         } else {
             $lang = array_key_first($request->options);
@@ -75,7 +75,7 @@ class Search_controller
             if (empty($request->options[$lang])) {
                 WorldlangDictUtils::redirect(config:$config, request:$request);
             }
-            $term = trim($request->options[$lang]);
+            $term = mb_trim($request->options[$lang], encoding:"UTF-8");
             $results = self::natlang_term_search(config:$config, lang:$lang, term:$term, request:$request);
         }
         $page->setTitle($config->getTrans('search result title').': '.$term);

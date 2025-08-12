@@ -16,35 +16,25 @@ namespace WorldlangDict;
     <p><?=$config->getTrans('translation aide description');?></p>
 
 <? $words = isset($_REQUEST['text']) ? $_REQUEST['text'] : null; ?>
-    <form action="<?=WorldlangDictUtils::makeUri(config:$config, controller:'tool', arg:'basatayti', request:$request);?>" method="post">
+    <form action="<?=WorldlangDictUtils::makeUri(config:$config, controller:'tool', arg:'basatayti', request:$request);?>" method="post" accept-charset="utf-8">
         <textarea name="text"><?=$words;?></textarea>
         <input type="submit" value="<?=$config->getTrans('translation aide translate button')?>" />
     </form>
 <? if (!empty($sentences)) : ?>
 
-    <? foreach($sentences as $current) : ?>
+    <? foreach($sentences as $current) :
+        if (empty($current->words)) :
+            continue;
+        endif; ?>
         <h3><?=$current->sentence;?></h3>
             <dl>
-        <? foreach($current->words as $word) :
+        <?
+
+        foreach($current->words as $word) :
             $wordClass = "";
             $trans = "";
-            
-            if (!ctype_alpha($word)) {
-                continue;
-            }
 
-            if (!empty($word) && !empty($dict[$word])) {
-                $trans = $dict[$word];
-            }
-            else if (!empty($word) && isset($dict[$word]) && empty($dict[$word])) {
-                $trans = '[Translation not found in this language]';
-            }
-            else {
-                // Line feed / new paragraph
-                $trans = '[Word not found in dictionary]';
-            }
-
-            if (isset($dict[$word])) : ?>
+            if (!empty($word) && isset($dict[$word])) : ?>
             <div>
                 <dt><?=WorldlangDictUtils::makeLink(
                     config:$config, request:$request,
@@ -53,9 +43,24 @@ namespace WorldlangDict;
                 );?></dt>
                 <dd>
                     <em>(<a href="<?=$config->grammar_url;?>"><?=$dict[$word]['class'];?></a>)</em>&nbsp;
-                    <?=$dict[$word]['translation'];?>                    
+                    <?php
+                    if (!empty($dict[$word]['translation'])) :
+                        echo($dict[$word]['translation']);
+                    else :
+                        echo("[Translation not found in this language]");
+                    endif; ?>
                 </dd>
             </div>
+            <?php else : /* word does not exist */
+            if (ctype_alpha($word)) {
+                $trans = '[Word not found in dictionary]';
+            } ?>
+                <div>
+                    <dt><?= $word ?></dt>
+                    <dd>
+                        <?=$trans;?>                    
+                    </dd>
+                </div>
             <? endif; ?>
         <? endforeach; ?>
         </dl>

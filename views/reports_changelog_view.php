@@ -22,11 +22,12 @@ $cur_date = "";
 
 <table>
 <? foreach($data as $cur) { 
-  if ($cur_date !== substr($cur['timestamp'], 0, 10)) {
-    $cur_date = substr($cur['timestamp'], 0, 10);
+  $last_updated = mb_substr($cur['timestamp'], 0, 10, encoding:"UTF-8");
+  if ($cur_date !== $last_updated) {
+    $cur_date = $last_updated;
   ?>
   <tr>
-    <td span="2"><h2><?= substr($cur['timestamp'], 0, 10); ?></h2></td>
+    <td span="2"><h2><?= $cur_date; ?></h2></td>
     
   </tr>
   <?    

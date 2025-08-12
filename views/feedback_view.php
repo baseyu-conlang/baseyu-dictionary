@@ -15,6 +15,7 @@
 <form
   action="https://formspree.io/maylyonr"
   method="POST"
+  accept-charset="utf-8"
 >
   <input type="hidden" name="URL" value="<?=isset($request->options['url'])?$request->options['url']:'(blank)';?>" >
   <label>

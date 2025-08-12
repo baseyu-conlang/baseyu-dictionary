@@ -1,9 +1,9 @@
 <?php
 namespace WorldlangDict;
 
-class Test_controller
+class Dev_controller
 {
-    public static function helloWorld($config, $request, &$page)
+    public static function dash($config, $request, &$page)
     {
         $page->setTitle("Dev Dashboard");
         $page->content = "Hello, world!";

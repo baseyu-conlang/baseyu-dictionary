@@ -9,7 +9,7 @@ class Word_controller
             self::randomWord($config, $request, $page);
         }
         
-        $term = strtolower($request->arguments[0]);
+        $term = mb_strtolower($request->arguments[0], encoding:"UTF-8");
         $file = $config->api2Path.'terms/'.$term.'.yaml';
         if (!file_exists($file)) throw new Error_404_Exception("Entry Not Found");
         $entry = yaml_parse_file($file);
@@ -33,12 +33,11 @@ class Word_controller
         $term = isset($request->arguments[0]) ? $request->arguments[0] : null;
 
         // Check for translator note, and remove
-        if (str_contains($term, '(')) {
-            $term = trim(substr($term, 0, strpos($term, '(')));
-        }
-
-        if (is_null($term)) {
+        if (is_null($term) || empty($term)) {
             WorldlangDictUtils::redirect(config:$config, request:$request);
+        }
+        if (str_contains($term, '(')) {
+            $term = mb_trim(mb_substr($term, 0, mb_strpos($term, '(', encoding:"UTF-8"), encoding:"UTF-8"), encoding:"UTF-8");
         }
         if (!isset($search_terms[$term])) {
             throw new Error_404_Exception("Word not found");
@@ -56,7 +55,7 @@ class Word_controller
         if ($listLang == $config->worldlang) {
             // NOTE Should this be in the Word class?
             foreach ($config->dictionary->words as $word=>$wordData) {
-                $list[strtolower($word)] = new Word($config, $wordData);
+                $list[mb_strtolower($word, encoding:"UTF-8")] = new Word($config, $wordData);
             }
         } else {
             // NOTE Should this be in the Word class?
@@ -66,7 +65,7 @@ class Word_controller
                     $this->list[$word] = new Word($config, $config->dictionary[$config->worldlang][$wLWords[0]]);
                 } else {
                     foreach ($wLWords as $wLWord) {
-                        $this->list[$word][$glbWord] = new Word($config, $config->dictionary[$config->worldlang][trim($wLWord)]);
+                        $this->list[$word][$glbWord] = new Word($config, $config->dictionary[$config->worldlang][mb_trim($wLWord, encoding:"UTF-8")]);
                     }
                 }
             }

@@ -27,12 +27,12 @@ if (!empty($entry['trans'][$request->lang])):
 
             // var_dump($translation);
             // Check for preceeding translation note using colon
-            if (($pos = strpos($translation, ':')) !== false) {
-                $trans_note_preceeding = trim(substr($translation, 0, $pos+1));
-                $translation = trim(substr($translation, $pos+1));
+            if (($pos = mb_strpos($translation, ':', encoding:"UTF-8")) !== false) {
+                $trans_note_preceeding = mb_trim(substr($translation, 0, $pos+1), encoding:"UTF-8");
+                $translation = mb_trim(mb_substr($translation, $pos+1, encoding:"UTF-8"), encoding:"UTF-8");
             }
             
-            $slug = trim(strtolower(preg_replace('/\((.+)\)/U', '', strip_tags($translation))));  // regex removes parentheticals (...)
+            $slug = mb_trim(mb_strtolower(preg_replace('/\((.+)\)/U', '', strip_tags($translation)), encoding:"UTF-8"), encoding:"UTF-8");  // regex removes parentheticals (...)
 
             // TODO: link this!
             if (!str_contains($translation, '<a')) :
@@ -62,7 +62,7 @@ if (isset($entry['entry notes'])) :
                 ?>  <p><?= $config->getTrans('entry note '.$type); ?>: <?
                 $nfirst = true;
                 foreach ($entry['entry notes'][$type] as $slug) :
-                    $slug=trim($slug);
+                    $slug = mb_trim($slug, encoding:"UTF-8");
                     if (!$nfirst) {
                         echo(", ");
                     } else {

@@ -31,7 +31,7 @@
     <header>
         <h2><?=$config->getTrans('candidate check title');?></h2>
     </header>
-    <form class="tool" action="<?=WorldlangDictUtils::makeUri(config:$config, controller:'tool', arg:'kandidato-lexi', request:$request);?>" method="get">
+    <form class="tool" action="<?=WorldlangDictUtils::makeUri(config:$config, controller:'tool', arg:'kandidato-lexi', request:$request);?>" method="get" accept-charset="utf-8">
         <input type="text" name="candidate" placeholder="<?=$config->getTrans('candidate check placeholder');?>" />
         <input type="submit" value="<?=$config->getTrans('candidate check button');?>" />
     </form>

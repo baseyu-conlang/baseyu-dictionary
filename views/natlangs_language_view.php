@@ -19,22 +19,25 @@ namespace WorldlangDict;
 
 <dl>
 <? foreach($data as $term) { ?>
-
     <div>
+    <? if (isset($dict[$term])) : ?>
         <dt lang="<?= WL_CODE_FULL; ?>"><?=
             WorldlangDictUtils::makeLink(text:$term,
                 config:$config, request:$request,
                 controller:'word', arg:urlencode($term)
             );?>
-<? if (isset($dict[$term]['class']) && !empty($dict[$term]['class'])) : ?>
-            
-<? endif; ?>
         </dt>
         <dd>
+        <? if (!empty($dict[$term]['class'])) : ?>
             <span class="wordClass">(<a href="<?=$config->grammar_url;?>"><?=$dict[$term]['class'];?></a>)</span>
+        <? endif; ?>
             <?=$dict[$term]['translation']?>
         </dd>
-    </div>
+    <? else:
+        error_log("Missing `{$term}` from \$dict[] in `natlangs_language_view.php`."); ?>
+        <dt lang="<?= WL_CODE_FULL; ?>"><?=$term?></dt><dd></dd>
+    <? endif; ?>
+</div>
 
 
 <? } ?>

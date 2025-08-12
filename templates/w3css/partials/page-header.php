@@ -21,7 +21,7 @@ namespace WorldlangDict;
 <? endif; ?>
     </nav>
     <section class="search">
-        <form action="<?php echo WorldlangDictUtils::makeUri(config:$config, controller:"search", request:$request); ?>" method="get">
+        <form action="<?php echo WorldlangDictUtils::makeUri(config:$config, controller:"search", request:$request); ?>" method="get" accept-charset="utf-8">
             <input type="text" name="<?= WL_CODE_SHORT; ?>" placeholder="<?php echo $config->getTrans('search worldlang placeholder');?>" value="" />
             <input type="text" name="<?=$request->lang; ?>" placeholder="<?php echo $config->getTrans('search natlang placeholder');?>" value="" />
             <input type="submit" value="<?php echo $config->getTrans('search button');?>" />

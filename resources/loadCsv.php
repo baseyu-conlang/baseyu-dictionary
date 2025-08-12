@@ -15,7 +15,7 @@ function loadCsv($file)
         foreach ($word as $key=>$datum) {
             $newWord[empty($columnNames[$key])?'Word':$columnNames[$key]] = $datum;
         }
-        $wordIndex = strtolower(trim($word[0]));
+        $wordIndex = mb_strtolower(mb_trim($word[0], encoding:"UTF-8"));
         $dictionary[$wordIndex] = $newWord;
     }
     return $dictionary;

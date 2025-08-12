@@ -1,10 +1,16 @@
 <?php
 namespace WorldlangDict;
 
+use Error;
+
 // Create page description metadata
 $trans = [];
-foreach($entry['trans'][$config->lang] as $trans_group) {
-    $trans[] = implode(", ", $trans_group);
+if (isset($entry['trans'][$config->lang])) {
+    foreach($entry['trans'][$config->lang] as $trans_group) {
+        $trans[] = implode(", ", $trans_group);
+    }
+} elseif (!isset($entry['trans'])) {
+    error_log("No translations at all for entry in `entry_view.php`: ".serialize($entry));
 }
 $trans = implode("; ", $trans);
 
@@ -142,7 +148,11 @@ if (array_key_exists('derived terms', $entry)): ?>
             <h2><?=sprintf($config->getTrans('derived word list'), '');?></h2>
             <?
             foreach($entry['derived terms'] as $slug=>$data) :
-                ?><a href="<?= WorldlangDictUtils::makeUri(config:$config, controller:'word', arg:$slug, request:$request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$data['term'];?></a> <?
+                if (!isset($data['term'])) {
+                    // Debugging for undefined key `term` on $data, using ?? $slug on lines below which may be temp fix.
+                    error_log("Index 'term' does not exist on data for derived term '{$slug}' in `entry_view.php`. Serialized data: ".serialize($entry)."\n");
+                }
+                ?><a href="<?= WorldlangDictUtils::makeUri(config:$config, controller:'word', arg:$slug, request:$request); ?>" class="hl encap" lang="<?=WL_CODE_FULL;?>"><?=$data['term'] ?? $slug;?></a> <?
             endforeach;
 
             ?> <span class="hl h1">[+]</span>
@@ -155,13 +165,14 @@ if (array_key_exists('derived terms', $entry)): ?>
                 <dt><?=WorldlangDictUtils::makeLink(
                     controller:'word', arg:urlencode($a_term),
                     config:$config, request:$request,
-                    text: $data['term']
+                    text: $data['term'] ?? $a_term
                 );?></dt>
                 <dd>
                 <? if (isset($data['class'])) : ?>
                     <em>(<a href="<?=$config->grammar_url;?>"><?=$data['class'];?></a>)</em>&nbsp;
-                <? endif; ?>
+                <? elseif (isset($data['trans'][$request->lang])) : ?>
                     <?=$data['trans'][$request->lang];?>
+                <? endif; ?>
                 </dd>
             </div>
         <? endforeach; ?>

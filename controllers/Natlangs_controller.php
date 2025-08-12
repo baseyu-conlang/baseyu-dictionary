@@ -10,7 +10,7 @@ class Natlangs_controller
 {
     public static function run($config, $request, $page)
     {
-        $arg = isset($request->arguments[0]) ? strtolower($request->arguments[0]) : '';
+        $arg = isset($request->arguments[0]) ? mb_strtolower($request->arguments[0], encoding:"UTF-8") : '';
         
         // TODO: i18n
         $page->description = "Natlangs sources for Globasa words";

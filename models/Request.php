@@ -17,14 +17,14 @@ class Request
 
     public function __construct(WorldlangDictConfig $config)
     {
-        $this->url = $_SERVER['REQUEST_URI'];
-        $parsedUrl = parse_url(strtolower($_SERVER['REQUEST_URI']));
+        $this->url = filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_VALIDATE_URL);
+        $parsedUrl = parse_url(mb_strtolower(filter_input(INPUT_SERVER, 'REQUEST_URI'), encoding:"UTF-8"));
         $this->path = isset($parsedUrl['path']) ? explode('/', $parsedUrl['path']) : [];
 
         if (isset($parsedUrl['query'])) {
             //$this->linkQuery = '?'.$parsedUrl['query'];
             $this->linkQuery = '';
-            parse_str($parsedUrl['query'], $this->options);
+            mb_parse_str($parsedUrl['query'], $this->options);
         } else {
             $this->linkQuery = '';
             $this->options = '';
@@ -32,7 +32,7 @@ class Request
 
         // Find num of parameters by comparing path to URI (minus 3 for domain)
         $requestSize = sizeof($this->path);
-        if (empty($this->path[$requestSize-1])) {
+        if ($requestSize && empty($this->path[$requestSize-1])) {
             $requestSize -= 1;
         }
         $requestSkip = sizeof(explode('/', $config->siteUri))-3;
@@ -44,11 +44,12 @@ class Request
         $this->arguments = [];
 
         if ($requestSize >= 1) {
-            if (isset($config->userLangs[$this->path[$requestSkip]])) {
-                $this->lang = $this->path[$requestSkip];
+            $req_lang = filter_var($this->path[$requestSkip], FILTER_SANITIZE_URL);
+            if (isset($config->userLangs[$req_lang])) {
+                $this->lang = $req_lang;
             }
             if ($requestSize >= 2) {
-                $this->controller = $this->path[$requestSkip+1];
+                $this->controller = filter_var($this->path[$requestSkip+1], FILTER_SANITIZE_URL);
                 if ($requestSize >= 3) {
                     for ($i = 2; $i < $requestSize; $i++) {
                         $this->arguments[$i-2] =

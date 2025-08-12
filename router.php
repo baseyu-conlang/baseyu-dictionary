@@ -54,8 +54,8 @@ function router(WorldlangDictConfig $config)
                 require_once('controllers/Reports_controller.php');
                 Reports_controller::run($config, $request, $page);
                 break;
-            case 'test': case $config->routes['test']:
-                Test_controller::helloWorld($config, $request, $page);
+            case 'dev-dash': case $config->routes['dev-dash']:
+                Dev_controller::dash($config, $request, $page);
                 break;
             case '':
                 Welcome_controller::home($config, $request, $page);

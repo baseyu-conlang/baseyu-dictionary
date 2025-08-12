@@ -9,42 +9,42 @@ namespace WorldlangDict;
 <? require_once($config->templatePath . "partials/page-header.php"); ?>
 
 <main class="dev_dashboard">
-<h1>Dev Dashboard</h1>
+Dev Dashboard
 <div class="dashboard">
 
 <section>
-    <h2>Website Features</h2>
+    <h2>Features</h2>
     <ul>
         <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'lexi', request:$request, text:"Random Word"); ?></li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'abeceli-menalari', request:$request, text:'Alphabetical Dictioary'); ?></li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'natlang-abeceli', request:$request, text:'Natlang Alphabetical'); ?></li>
+        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'abeceli-menalari', request:$request, text:'Browse'); ?></li>
+        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'natlang-abeceli', request:$request, text:'Natlang Browse'); ?></li>
 
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'lexilari', request:$request); ?>
-            <br/>Vocab List / lexilari</li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'tul', request:$request); ?><ul>
-            <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'tul/basatayti', request:$request); ?>
-                <br/>Translation Aid</li>
-            <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'tul/ifa-trasharufitul', request:$request); ?>
-                <br/>IPA Converter</li>
-            </ul></li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'kandidato-lexi?candidate=', request:$request); ?>
-            <br/>Candidate Word Check
+        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'lexilari', request:$request, text:'Tags'); ?></li>
+        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'estatisti-fe-lexiasel', request:$request, text:'Etymology Stats'); ?></li>
+        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports', request:$request, text:'Reports'); ?>
             <ul>
-                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'samaeskri-lexi', request:$request); ?>
-                    </br>Homonyms</li>
-                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'minimum-duaxey', request:$request); ?>
-                    <br/>Minimum Pairs</li>
+                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports/changelog', request:$request, text:'Changelog'); ?></li>
+                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports/new-terms', request:$request, text:'New Terms'); ?></li>
+                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports/updated-entries', request:$request, text:'Updated Entries'); ?></li>
+                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports/removed-terms', request:$request, text:'Removed'); ?></li>
+                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports/parse', request:$request, text:'Parse Report'); ?></li>
+                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'am-reporte', request:$request, text:'??? am-reporte'); ?></li>
+                
             </ul>
             </li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'estatisti-fe-lexiasel', request:$request); ?>
-            <br/>Etymology Stats -- and unliked terms</li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports', request:$request, text:'Reports'); ?></li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports/changelog', request:$request, text:'Changelog Report'); ?></li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'reports/parse', request:$request, text:'Parse Report'); ?></li>
-        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'am-reporte', request:$request, text:'??? am-reporte'); ?></li>
         
         <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'estatisti', request:$request, text:'Stats'); ?></li>
         <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'test', request:$request, text:'Dev Dashboard'); ?></li>
+        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'tul', request:$request); ?><ul>
+            <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'tul/basatayti', request:$request, text:'Translation Aid'); ?></li>
+            <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'tul/ifa-trasharufitul', request:$request, text:'IPA Converter'); ?></li>
+            </ul></li>
+        <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'kandidato-lexi?candidate=', request:$request, text:'Candidate Word Check'); ?>
+            <ul>
+                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'samaeskri-lexi', request:$request, text:'Homonyms'); ?></li>
+                <li><?= WorldlangDictUtils::makeLink(config:$config, controller:'minimum-duaxey', request:$request, text:'Minimum Pairs'); ?></li>
+            </ul>
+            </li>
     </ul>
 </section>
 
